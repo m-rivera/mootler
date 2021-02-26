@@ -1,0 +1,7 @@
+﻿Time,"User full name","Affected user","Event context",Component,"Event name",Description,Origin,"IP address"
+"1/02/21, 11:02","Harry Potter",-,"File: 2. Potions",File,"Course module viewed","The user with id '12345' viewed the 'resource' activity with course module id '1212130'.",web,192.168.255.255
+"1/02/21, 10:05","Harry Potter",-,"File: 2. Potions",File,"Course module viewed","The user with id '12345' viewed the 'resource' activity with course module id '1212130'.",web,192.168.255.255
+"29/01/21, 13:33","Hermione Granger",-,"Course: HOG0021: Defense against the dark arts",System,"Course viewed","The user with id '54321' viewed the 'resource' activity with course module id '3232331'.",web,192.168.255.254
+"29/01/21, 10:23","Ron Weasley",-,"File: 1. Charms",File,"Course module viewed","The user with id '32123' viewed the 'resource' activity with course module id '4235412'.",web,192.168.255.253
+"29/01/21, 10:23","Severus Snape",-,"File: 1. Charms",File,"Course module viewed","The user with id '98767' viewed the 'resource' activity with course module id '4235412'.",web,192.168.255.251
+"29/01/21, 10:23","Wilhelmina Grubbly Plank",-,"File: 2. Potions",File,"Course module viewed","The user with id '59801' viewed the 'resource' activity with course module id '12345'.",web,192.168.255.250
