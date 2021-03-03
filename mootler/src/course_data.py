@@ -3,6 +3,8 @@ Class containing activity and users from Moodle output
 
 """
 import pandas as pd
+import plotly.express as px
+from operator import itemgetter
 
 def users_to_fullnames(users_df):
     """Returns a list a full names from users DataFrame"""
@@ -109,9 +111,29 @@ class CourseData(object):
         self.filter_by_string(substring, "Event context")
         return
 
+    def active_users(self):
+        """Return a list of users having done an activity"""
+        ac_users = self.activity["User full name"].unique()
+        return ac_users
+
     def count_unique_active_users(self):
         """Return number of unique active users"""
-        n_ac_users = len(self.activity["User full name"].unique())
+        n_ac_users = len(self.active_users())
         return n_ac_users
+
+    def plot_by_activity(self):
+        """Show html bar plot of user activity"""
+        user_names = self.active_users()
+        activity_counts = [len(self.activity[self.activity["User full name"] == name]) for name in user_names]
+        names_counts = zip(user_names,activity_counts)
+        # sort
+        sorted_names = [i[0] for i in sorted(names_counts,key=itemgetter(1),reverse=True)]
+        # plot
+        fig = px.histogram(self.activity, x="User full name")
+        # reorder
+        fig.update_xaxes(categoryorder = "array", categoryarray = sorted_names)
+        fig.show()
+
+        return
 
 

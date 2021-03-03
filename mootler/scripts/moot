@@ -19,14 +19,21 @@ def main(args):
     if args.string:
         cdat.filter_by_string(args.string, args.colstring, incomplete=True)
 
-    print("After filtering there are {} activities.".format(len(cdat.activity)))
+    # count active users
+    n_act_users = cdat.count_unique_active_users()
+
+    print("After filtering there are {} active users out of {} for {} activities.".format(n_act_users,len(cdat.users), len(cdat.activity)))
+
+    if args.plot:
+        cdat.plot_by_activity()
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument("activity_file", help="CSV file of the activities.")
-    parser.add_argument("users_file", default=None, help="CSV file of users whose activity is analised. (optional)")
+    parser.add_argument("-u", "--users_file", default=None, help="CSV file of users whose activity is analised. (optional)")
     parser.add_argument("-s","--string", default=None, help="Substring to be searched for.")
     parser.add_argument("-c","--colstring", default="Event context", help="Substring of the column title in which activities are searched.")
+    parser.add_argument("-p","--plot", help="Plot a histogram of user activity.", action="store_true")
 
     user_input = sys.argv[1:]
     args = parser.parse_intermixed_args(user_input)
