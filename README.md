@@ -4,6 +4,13 @@ Your Moodle butler who gives usage reports from activity logs.
 This is designed to work with UCL's Moodle implementation. It is not tested
 anywhere else.
 
+Contact miguel.rivera@ucl.ac.uk for enquiries.
+
+## Dependencies
+
+- `pandas` : for data analysis
+- `plotly` : for plotting
+
 ## Usage
 
 Here is an example command:
@@ -23,4 +30,9 @@ moot activity.csv -u students.csv -s Potions -i -p
 - `-i`: (Optional) Save a list of inactive users as a csv file called
     `inactive.csv` by default.
 - `-p` : (Optional) Plot the activity as a histogram by user.
+
+## Contributing
+
+Any contributions are welcome! Please ensure that your pull requests pass
+testing and include their own tests for new features. We use `pytest`.
 
