@@ -12,10 +12,22 @@ def users_to_fullnames(users_df):
     full_names = [i + " " + j for i,j in zip(first_names, surnames)]
     return full_names
 
-def read_cd_csvs(acti_file, usr_file):
-    """Read csv files to generate a CourseData object"""
+def read_cd_csvs(acti_file, usr_file=None):
+    """
+    Read csv files to generate a CourseData object
 
-    cdat = CourseData(pd.read_csv(acti_file),pd.read_csv(usr_file))
+    Parameters
+    ----------
+    acti_file : str
+        Name of csv file containing the activities.
+    usr_file : str
+        Name of csv file containing users. Optional: if it's not included, cdat.users = None
+
+    """
+    if usr_file:
+        cdat = CourseData(pd.read_csv(acti_file),pd.read_csv(usr_file))
+    else:
+        cdat = CourseData(pd.read_csv(acti_file), None)
     return cdat
 
 class CourseData(object):
