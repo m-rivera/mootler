@@ -109,4 +109,9 @@ class CourseData(object):
         self.filter_by_string(substring, "Event context")
         return
 
+    def count_unique_active_users(self):
+        """Return number of unique active users"""
+        n_ac_users = len(self.activity["User full name"].unique())
+        return n_ac_users
+
 

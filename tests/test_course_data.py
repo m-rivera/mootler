@@ -33,4 +33,5 @@ def test_filter_by_context(hogwarts_cd):
     hogwarts_cd.filter_by_context("Potions")
     assert len(hogwarts_cd.activity) == 3
 
-
+def test_count_unique_active_users(hogwarts_cd):
+    assert hogwarts_cd.count_unique_active_users() == 5
