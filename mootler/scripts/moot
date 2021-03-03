@@ -24,6 +24,17 @@ def main(args):
 
     print("After filtering there are {} active users out of {} for {} activities.".format(n_act_users,len(cdat.users), len(cdat.activity)))
 
+    # inactive user info
+    if args.inactive == False:
+        pass
+    else:
+        if args.inactive == None:
+            inac_file_name = "inactive.csv"
+        else:
+            inac_file_name = args.inactive
+        cdat.inactive_users().to_csv(inac_file_name)
+
+    # plotting
     if args.plot:
         cdat.plot_by_activity()
 
@@ -33,6 +44,7 @@ if __name__ == '__main__':
     parser.add_argument("-u", "--users_file", default=None, help="CSV file of users whose activity is analised. (optional)")
     parser.add_argument("-s","--string", default=None, help="Substring to be searched for.")
     parser.add_argument("-c","--colstring", default="Event context", help="Substring of the column title in which activities are searched.")
+    parser.add_argument("-i","--inactive", default=False, help="Output CSV file of inactive students. If no name specified, it will be `inactive.csv`.", nargs='?')
     parser.add_argument("-p","--plot", help="Plot a histogram of user activity.", action="store_true")
 
     user_input = sys.argv[1:]
