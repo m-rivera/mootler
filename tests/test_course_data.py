@@ -35,3 +35,7 @@ def test_filter_by_context(hogwarts_cd):
 
 def test_count_unique_active_users(hogwarts_cd):
     assert hogwarts_cd.count_unique_active_users() == 5
+
+def test_inactive_users(hogwarts_cd):
+    inactive_users = hogwarts_cd.inactive_users()
+    assert len(inactive_users) == 2

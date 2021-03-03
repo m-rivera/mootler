@@ -121,6 +121,15 @@ class CourseData(object):
         n_ac_users = len(self.active_users())
         return n_ac_users
 
+    def inactive_users(self):
+        """Return a DataFrame of inactive users"""
+        full_names = users_to_fullnames(self.users)
+        active_names = self.active_users()
+        # mask for inactivity
+        mask = [i not in active_names for i in full_names]
+
+        return self.users[mask]
+
     def plot_by_activity(self):
         """Show html bar plot of user activity"""
         user_names = self.active_users()
