@@ -15,8 +15,13 @@ def test_filter_users(hogwarts_cd):
     assert len(hogwarts_cd.activity) == 5
 
 def test_filter_by_string(hogwarts_cd):
-    """Test filtering by context string"""
+    """Test filtering by string"""
     hogwarts_cd.filter_by_string("Potions", "Event context")
+    assert len(hogwarts_cd.activity) == 3
+
+def test_filter_by_string(hogwarts_cd):
+    """Test filtering by incomplete column string"""
+    hogwarts_cd.filter_by_string("Potions", "context", incomplete=True)
     assert len(hogwarts_cd.activity) == 3
 
 def test_filter_by_context(hogwarts_cd):

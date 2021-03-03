@@ -50,20 +50,37 @@ class CourseData(object):
         self.activity = self.activity[self.activity["User full name"].isin(names)]
         return
 
-    def filter_by_string(self, substring, col):
+    def filter_by_string(self, substring, col, incomplete = False):
         """
         Remove activities missing a string
 
         Parameters
         ----------
-        substring : string
+        substring : str
             The substring which indicates the activities to keep
         col : str
-            Column name where the substring is searched
+            Column name where the substring is searched. If `incomplete`, this can be a substring of the column name.
+        incomplete : bool
+            Only require a substring of the column name. (default: False)
+
 
         """
-
-        self.activity = self.activity[self.activity[col].str.contains(substring)]
+        # filtering by substring of column name
+        if incomplete:
+            columns = list(self.activity.columns)
+            # use masking to filter column names containing substring
+            mask = [col in i for i in columns]
+            filtered_cols = [i for i,j in zip(columns,mask) if j]
+            if len(filtered_cols) == 0:
+                raise KeyError("Substring absent from any column names. Use a substring that identifies a column name.")
+            elif len(filtered_cols) > 1:
+                raise KeyError("Several (" + str(len(filtered)) +") column names contain substring. Use a substring that is only found once.")
+            else:
+                # filter
+                self.activity = self.activity[self.activity[filtered_cols[0]].str.contains(substring)]
+        # filtering with exact column name
+        else:
+            self.activity = self.activity[self.activity[col].str.contains(substring)]
         return
 
     def filter_by_context(self, substring):
@@ -72,16 +89,12 @@ class CourseData(object):
 
         Parameters
         ----------
-        substring : string
+        substring : str
             The substring which indicates the activities to keep
 
         """
 
         self.filter_by_string(substring, "Event context")
         return
-
-
-
-
 
 
