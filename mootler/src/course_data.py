@@ -50,6 +50,36 @@ class CourseData(object):
         self.activity = self.activity[self.activity["User full name"].isin(names)]
         return
 
+    def filter_by_string(self, substring, col):
+        """
+        Remove activities missing a string
+
+        Parameters
+        ----------
+        substring : string
+            The substring which indicates the activities to keep
+        col : str
+            Column name where the substring is searched
+
+        """
+
+        self.activity = self.activity[self.activity[col].str.contains(substring)]
+        return
+
+    def filter_by_context(self, substring):
+        """
+        Remove activities missing a string from Event Context
+
+        Parameters
+        ----------
+        substring : string
+            The substring which indicates the activities to keep
+
+        """
+
+        self.filter_by_string(substring, "Event context")
+        return
+
 
 
 
