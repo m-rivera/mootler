@@ -31,6 +31,10 @@ moot activity.csv -u students.csv -s Potions -i -p
     `inactive.csv` by default.
 - `-p` : (Optional) Plot the activity as a histogram by user.
 
+The resulting plots are html and interactive. Here is a screenshot:
+
+![Activity plot](media/plot_fig.png)
+
 ## Contributing
 
 Any contributions are welcome! Please ensure that your pull requests pass
