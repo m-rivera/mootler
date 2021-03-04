@@ -32,7 +32,7 @@ Here is an example command:
 moot activity.csv -u students.csv -s Potions -i -p
 ```
 
-- `activity.csv` : Activity log for your module. It is recommended to filter for
+- `activity.csv`: Activity log for your module. It is recommended to filter for
     "participation" type activities.
 - `-u students.csv`: (Optional) User list downloadable from Moodle. Only the
     users in the list will be considered, this way you can e.g. exclude tutor
@@ -43,7 +43,7 @@ moot activity.csv -u students.csv -s Potions -i -p
     activity contains the word.
 - `-i`: (Optional) Save a list of inactive users as a csv file called
     `inactive.csv` by default.
-- `-p` : (Optional) Plot the activity as a histogram by user.
+- `-p`: (Optional) Plot the activity as a histogram by user.
 
 The resulting plots are html and interactive. Here is a screenshot:
 
