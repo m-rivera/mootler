@@ -11,6 +11,14 @@ Contact miguel.rivera@ucl.ac.uk for enquiries.
 - `pandas` : for data analysis
 - `plotly` : for plotting
 
+## Installation
+
+To install, use `pip install mootler`
+
+If you get the error message: `ERROR: Could not find a version that satisfies the requirement pandas (from mootler)`,
+you will have to install pandas manually with `pip install pandas`, then try
+again.
+
 ## Usage
 
 Here is an example command:
