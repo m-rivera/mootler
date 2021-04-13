@@ -23,7 +23,7 @@ def main(args):
     # count active users
     n_act_users = cdat.count_unique_active_users()
 
-    if cdat.users:
+    if args.users_file:
         print(
             "After filtering there are {} active users out of {} for {} activities.".format(
                 n_act_users, len(cdat.users), len(cdat.activity)

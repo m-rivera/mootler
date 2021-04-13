@@ -49,6 +49,19 @@ The resulting plots are html and interactive. Here is a screenshot:
 
 ![Activity plot](media/plot_fig.png)
 
+There is also a utility called moot_enrol which takes a user list as formatted
+by Portico, and turns it into a format suitable for Moodle bulk enrol:
+```
+moot_enrol portico.csv Charms -o bulk.csv
+```
+
+- `portico.csv`: A csv file of module participants downloaded from Portico.
+- `Charms`: The name which will populate the 'Group' column, creating a group on
+    Moodle.
+- `-o bulk.csv`: (Optional) Name of the ouptut file. Otherwise, in this case, it
+    would be `portico_enrol.csv`
+
+
 ## Contributing
 
 Any contributions are welcome! Please ensure that your pull requests pass

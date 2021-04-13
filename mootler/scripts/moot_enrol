@@ -1,0 +1,43 @@
+#!/usr/bin/env python3
+"""
+Read in user list from Portico, and turn it into a csv for Moodle bulk enrol like this:
+
+moot_enrol portico.csv Charms
+
+Which will produce portico_enrol.csv where the Group column is populated by "Charms"
+
+"""
+import sys
+import argparse
+import mootler.src.portico_tools as pt
+
+
+def main(args):
+    # read in file
+    if args.students_file:
+        df = pt.get_emails(args.students_file)
+    # fill group name
+    df.insert(1, "Group", args.group_name)
+
+    # write out
+    if args.output == None:
+        out_file = args.students_file[0:-4] + "_enrol.csv"
+    else:
+        out_file = args.output
+
+    df.to_csv(out_file,index=False)
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser()
+    parser.add_argument("students_file", help="CSV file of the students.")
+    parser.add_argument("group_name", help="Name of the group to be enrolled.")
+    parser.add_argument(
+        "-o",
+        "--output",
+        default=None,
+        help="CSV of users in Moodle format using emails as IDs.",
+    )
+
+    user_input = sys.argv[1:]
+    args = parser.parse_intermixed_args(user_input)
+    main(args)
