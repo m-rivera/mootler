@@ -8,8 +8,22 @@ Contact miguel.rivera@ucl.ac.uk for enquiries.
 
 ## Dependencies
 
-- `pandas` : for data analysis
-- `plotly` : for plotting
+- `pandas` : for data analysis.
+- `plotly` : for plotting.
+
+## Installation
+
+To install, use:
+```
+pip install mootler`
+```
+
+If you get the error message: `ERROR: Could not find a version that satisfies the requirement pandas (from mootler)`,
+you will have to install pandas manually with:
+```
+pip install pandas
+```
+then try again.
 
 ## Installation
 
@@ -26,7 +40,7 @@ Here is an example command:
 moot activity.csv -u students.csv -s Potions -i -p
 ```
 
-- `activity.csv` : Activity log for your module. It is recommended to filter for
+- `activity.csv`: Activity log for your module. It is recommended to filter for
     "participation" type activities.
 - `-u students.csv`: (Optional) User list downloadable from Moodle. Only the
     users in the list will be considered, this way you can e.g. exclude tutor
@@ -37,11 +51,24 @@ moot activity.csv -u students.csv -s Potions -i -p
     activity contains the word.
 - `-i`: (Optional) Save a list of inactive users as a csv file called
     `inactive.csv` by default.
-- `-p` : (Optional) Plot the activity as a histogram by user.
+- `-p`: (Optional) Plot the activity as a histogram by user.
 
 The resulting plots are html and interactive. Here is a screenshot:
 
 ![Activity plot](media/plot_fig.png)
+
+There is also a utility called moot_enrol which takes a user list as formatted
+by Portico, and turns it into a format suitable for Moodle bulk enrol:
+```
+moot_enrol portico.csv Charms -o bulk.csv
+```
+
+- `portico.csv`: A csv file of module participants downloaded from Portico.
+- `Charms`: The name which will populate the 'Group' column, creating a group on
+    Moodle.
+- `-o bulk.csv`: (Optional) Name of the ouptut file. Otherwise, in this case, it
+    would be `portico_enrol.csv`
+
 
 ## Contributing
 

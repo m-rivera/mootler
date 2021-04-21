@@ -3,3 +3,6 @@
 test/.pytest_cache/**
 .pytest_cache/**
 *.egg-info/
+build/*
+dist/*
+
