@@ -1,0 +1,63 @@
+#!/usr/bin/env python3
+"""
+Read in all pdf files in the current directory that don't start with "merged", and merge them in groups as evenly distributed as possible.
+
+"""
+import sys
+import argparse
+import glob
+import math
+from PyPDF2 import PdfFileMerger, PdfFileReader
+
+
+def main(args):
+    # read file names
+    all_files = glob.glob("*")
+    pdfs_raw = [i for i in all_files if i[-4:]==".pdf"]
+
+    # don't count merged pdfs
+    pdfs = []
+
+    for pdf in pdfs_raw:
+        if pdf[:6] != "merged":
+            pdfs.append(pdf)
+
+    # optional shuffle pdfs
+    if args.shuffle:
+        import random
+        pdfs.shuffle()
+
+
+    # separate pdfs in groups
+    n_pdfs = len(pdfs)
+    remainder = n_pdfs % args.n_groups
+
+    # amount of pdfs per group
+    group_sizes = [math.trunc(n_pdfs/args.n_groups) for i in range(args.n_groups)]
+    for i in range(remainder):
+        group_sizes[i] += 1
+    print(group_sizes)
+
+    # merger for each group
+    start_label = 0
+    for i,group_size in enumerate(group_sizes):
+        merger = PdfFileMerger()
+        group_pdfs = pdfs[start_label:start_label+group_size]
+        print(group_pdfs)
+        for pdf in group_pdfs:
+            merger.append(PdfFileReader(pdf),pdf[:-4])
+        # write
+        with open("merged_"+str(i+1)+".pdf",'wb') as out_file:
+            merger.write(out_file)
+        start_label += group_size
+        print(start_label)
+
+
+if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="Read in all pdf files in the current directory that don't start with 'merged', and merge them in groups as evenly distributed as possible. The allocation will be in alphabetical order of pdf name, unless the shuffle option is used,")
+    parser.add_argument("n_groups", help="The number of final merged files.",type=int)
+    parser.add_argument("-s","--shuffle",action="store_true")
+
+    user_input = sys.argv[1:]
+    args = parser.parse_intermixed_args(user_input)
+    main(args)

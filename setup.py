@@ -11,8 +11,10 @@ setup(name='mootler',
       packages=['mootler',
           'mootler.src',],
       scripts=['mootler/scripts/moot',
-          'mootler/scripts/moot_enrol'],
+          'mootler/scripts/moot_enrol',
+          'mootler/scripts/moot_pdf_merge'],
       install_requires=[
           'pandas',
-          'plotly',],
+          'plotly',
+          'PyPDF2'],
       )
