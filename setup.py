@@ -3,7 +3,7 @@
 from setuptools import setup, Extension
 
 setup(name='mootler',
-      version='0.2',
+      version='0.2.1',
       description='Utility to analyse Moodle data and plot it',
       author='Miguel Rivera',
       author_email='miguel.rivera@ucl.ac.uk',
