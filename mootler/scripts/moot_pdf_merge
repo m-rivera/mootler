@@ -25,7 +25,7 @@ def main(args):
     # optional shuffle pdfs
     if args.shuffle:
         import random
-        pdfs.shuffle()
+        random.shuffle(pdfs)
 
 
     # separate pdfs in groups
@@ -36,21 +36,18 @@ def main(args):
     group_sizes = [math.trunc(n_pdfs/args.n_groups) for i in range(args.n_groups)]
     for i in range(remainder):
         group_sizes[i] += 1
-    print(group_sizes)
 
     # merger for each group
     start_label = 0
     for i,group_size in enumerate(group_sizes):
         merger = PdfFileMerger()
         group_pdfs = pdfs[start_label:start_label+group_size]
-        print(group_pdfs)
         for pdf in group_pdfs:
             merger.append(PdfFileReader(pdf),pdf[:-4])
         # write
         with open("merged_"+str(i+1)+".pdf",'wb') as out_file:
             merger.write(out_file)
         start_label += group_size
-        print(start_label)
 
 
 if __name__ == "__main__":
