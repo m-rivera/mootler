@@ -15,7 +15,7 @@ Contact miguel.rivera@ucl.ac.uk for enquiries.
 
 To install, use:
 ```
-pip install mootler`
+pip install mootler
 ```
 
 If you get the error message: `ERROR: Could not find a version that satisfies the requirement pandas (from mootler)`,
