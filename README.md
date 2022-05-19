@@ -25,14 +25,6 @@ pip install pandas
 ```
 then try again.
 
-## Installation
-
-To install, use `pip install mootler`
-
-If you get the error message: `ERROR: Could not find a version that satisfies the requirement pandas (from mootler)`,
-you will have to install pandas manually with `pip install pandas`, then try
-again.
-
 ## Usage
 
 Here is an example command:
