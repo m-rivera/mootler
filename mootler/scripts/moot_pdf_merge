@@ -40,7 +40,7 @@ def main(args):
     # merger for each group
     start_label = 0
     for i,group_size in enumerate(group_sizes):
-        merger = PdfFileMerger()
+        merger = PdfFileMerger(strict=False)
         group_pdfs = pdfs[start_label:start_label+group_size]
         for pdf in group_pdfs:
             merger.append(PdfFileReader(pdf),pdf[:-4])
